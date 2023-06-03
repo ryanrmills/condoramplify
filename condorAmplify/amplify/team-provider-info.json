@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-condoramplify-dev-135138-authRole",
+      "UnauthRoleArn": "arn:aws:iam::561151094752:role/amplify-condoramplify-dev-135138-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::561151094752:role/amplify-condoramplify-dev-135138-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-condoramplify-dev-135138-deployment",
+      "UnauthRoleName": "amplify-condoramplify-dev-135138-unauthRole",
+      "StackName": "amplify-condoramplify-dev-135138",
+      "StackId": "arn:aws:cloudformation:us-west-2:561151094752:stack/amplify-condoramplify-dev-135138/6ea5e870-0250-11ee-b74a-02345b6fc441",
+      "AmplifyAppId": "da4l866m33nad"
+    },
+    "categories": {
+      "auth": {
+        "condoramplify97851b02": {}
+      }
+    }
+  }
+}
