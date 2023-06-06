@@ -165,16 +165,27 @@ var personnelList = [
 ];
 
 // Variables to store the generated crew and approved crew
-var generatedCrew = [];
-var approvedCrew = [];
-
 function generateCrew() {
   // Generate a crew for a single plane
   var crew = generateSingleCrew();
 
-  // Display the generated crew in the table
-  displayCrew("generatedCrewTable", crew);
+  // Generate flight information
+  flightInfo = generateFlightInfo();
 
+  // Display the tail number
+  var tailNumberTable = document.getElementById("tailNumberTable");
+  tailNumberTable.innerHTML = "";
+  var tailNumberRow = document.createElement("tr");
+  var tailNumberCell = document.createElement("td");
+  tailNumberCell.textContent = "Tail Number: " + flightInfo.tailNumber;
+  tailNumberRow.appendChild(tailNumberCell);
+  tailNumberTable.appendChild(tailNumberRow);
+
+  // Display the generated crew
+  var crewTable = document.getElementById("generatedCrewTable");
+  crewTable.innerHTML = "";
+  displayCrew(crewTable, crew);
+  
   // Store the generated crew
   generatedCrew = crew;
 }
@@ -201,14 +212,17 @@ function generateSingleCrew() {
   return crew;
 }
 
-function displayCrew(tableId, crew) {
-  var table = document.getElementById(tableId);
+function generateFlightInfo() {
+  // Replace this with your code to generate the flight information
+  // Example flight information:
+  return {
+    tailNumber: planeList[Math.floor(Math.random() * planeList.length)].tailNumber,
+    date: "2023-06-06",
+    time: "10:00 AM"
+  };
+}
 
-  // Clear the existing table
-  while (table.firstChild) {
-    table.firstChild.remove();
-  }
-
+function displayCrew(table, crew) {
   // Create the table header
   var headerRow = document.createElement("tr");
   var headers = ["Name", "Title", "Experience"];
@@ -233,5 +247,24 @@ function displayCrew(tableId, crew) {
     row.appendChild(experienceCell);
     table.appendChild(row);
   });
+}
+
+function approveCrew() {
+  // Store the generated crew as the approved crew
+  approvedCrew = generatedCrew;
+
+  // Display the approved crew
+  var approvedCrewTable = document.getElementById("approvedCrewTable");
+  approvedCrewTable.innerHTML = "";
+  displayCrew(approvedCrewTable, approvedCrew);
+
+  // Display the flight information
+  var flightInfoTable = document.getElementById("flightInfoTable");
+  flightInfoTable.innerHTML = "";
+  var flightInfoRow = document.createElement("tr");
+  var flightInfoCell = document.createElement("td");
+  flightInfoCell.textContent = "Flight Date: " + flightInfo.date + ", Time: " + flightInfo.time;
+  flightInfoRow.appendChild(flightInfoCell);
+  flightInfoTable.appendChild(flightInfoRow);
 }
 
