@@ -113,3 +113,125 @@ function setAnimateHelpTextVisibility(){
     document.getElementById("animateHelpText").style.display = "none";
   }
 }
+
+// Define the list of planes
+var planeList = [];
+var planeCount = 10; // Number of planes needed
+
+for (var i = 1; i <= planeCount; i++) {
+  var plane = { tailNumber: "PLN" + i.toString().padStart(3, "0"), type: "Type " + i };
+  planeList.push(plane);
+}
+
+// Define the list of personnel
+var personnelList = [
+  { name: "John Doe", title: "Pilot", experience: 5 },
+  { name: "Jane Smith", title: "Pilot", experience: 8 },
+  { name: "Tom Johnson", title: "Crew Member", experience: 3 },
+  { name: "Emily Davis", title: "Crew Member", experience: 2 },
+  { name: "Michael Brown", title: "Pilot", experience: 7 },
+  { name: "Sarah Wilson", title: "Pilot", experience: 6 },
+  { name: "Robert Taylor", title: "Crew Member", experience: 4 },
+  { name: "Olivia Thomas", title: "Crew Member", experience: 1 },
+  // Add more personnel as needed
+  { name: "Daniel Anderson", title: "Pilot", experience: 9 },
+  { name: "Sophia Martinez", title: "Pilot", experience: 3 },
+  { name: "Jackson Lewis", title: "Crew Member", experience: 5 },
+  { name: "Victoria Walker", title: "Crew Member", experience: 2 },
+  // Add more personnel as needed
+  { name: "William Moore", title: "Pilot", experience: 4 },
+  { name: "Ava Clark", title: "Pilot", experience: 2 },
+  { name: "Ethan Hall", title: "Crew Member", experience: 6 },
+  { name: "Isabella Turner", title: "Crew Member", experience: 3 },
+  // Add more personnel as needed
+  { name: "Jacob Baker", title: "Pilot", experience: 7 },
+  { name: "Mia Foster", title: "Pilot", experience: 4 },
+  { name: "Liam Murphy", title: "Crew Member", experience: 5 },
+  { name: "Emma Butler", title: "Crew Member", experience: 2 },
+  { name: "Adam Wilson", title: "Pilot", experience: 6 },
+  { name: "Eva Thompson", title: "Pilot", experience: 4 },
+  { name: "Lucas Anderson", title: "Crew Member", experience: 7 },
+  { name: "Sophie Clark", title: "Crew Member", experience: 1 },
+  // Add more personnel as needed
+  { name: "Nathan Turner", title: "Pilot", experience: 9 },
+  { name: "Lily Parker", title: "Pilot", experience: 3 },
+  { name: "Henry Brooks", title: "Crew Member", experience: 5 },
+  { name: "Grace Davis", title: "Crew Member", experience: 2 },
+  // Add more personnel as needed
+  { name: "Elijah Mitchell", title: "Pilot", experience: 7 },
+  { name: "Aria Walker", title: "Pilot", experience: 4 },
+  { name: "Oliver Baker", title: "Crew Member", experience: 6 },
+  { name: "Chloe Foster", title: "Crew Member", experience: 3 },
+];
+
+// Variables to store the generated crew and approved crew
+var generatedCrew = [];
+var approvedCrew = [];
+
+function generateCrew() {
+  // Generate a crew for a single plane
+  var crew = generateSingleCrew();
+
+  // Display the generated crew in the table
+  displayCrew("generatedCrewTable", crew);
+
+  // Store the generated crew
+  generatedCrew = crew;
+}
+
+function generateSingleCrew() {
+  var crew = [];
+
+  // Randomly select a pilot
+  var randomPilotIndex = Math.floor(Math.random() * personnelList.length);
+  var pilot = personnelList[randomPilotIndex];
+  crew.push(pilot);
+
+  // Randomly select crew members
+  var remainingPersonnel = personnelList.filter(function (person) {
+    return person.title === "Crew Member";
+  });
+  for (var i = 0; i < 3; i++) {
+    var randomCrewIndex = Math.floor(Math.random() * remainingPersonnel.length);
+    var crewMember = remainingPersonnel[randomCrewIndex];
+    crew.push(crewMember);
+    remainingPersonnel.splice(randomCrewIndex, 1);
+  }
+
+  return crew;
+}
+
+function displayCrew(tableId, crew) {
+  var table = document.getElementById(tableId);
+
+  // Clear the existing table
+  while (table.firstChild) {
+    table.firstChild.remove();
+  }
+
+  // Create the table header
+  var headerRow = document.createElement("tr");
+  var headers = ["Name", "Title", "Experience"];
+  headers.forEach(function (headerText) {
+    var th = document.createElement("th");
+    th.appendChild(document.createTextNode(headerText));
+    headerRow.appendChild(th);
+  });
+  table.appendChild(headerRow);
+
+  // Add crew members to the table
+  crew.forEach(function (member) {
+    var row = document.createElement("tr");
+    var nameCell = document.createElement("td");
+    var titleCell = document.createElement("td");
+    var experienceCell = document.createElement("td");
+    nameCell.appendChild(document.createTextNode(member.name));
+    titleCell.appendChild(document.createTextNode(member.title));
+    experienceCell.appendChild(document.createTextNode(member.experience));
+    row.appendChild(nameCell);
+    row.appendChild(titleCell);
+    row.appendChild(experienceCell);
+    table.appendChild(row);
+  });
+}
+
