@@ -1,82 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta charset="UTF-8"/>
-    <link href="home.css" rel="stylesheet"/>
-    <script src="home.js"></script>
+<head>
+    <link rel="stylesheet" href="home3.css">
+    <script src="home3.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8GZFzfpxUMK_aqGNAmCZexZXMYB17BIc"></script>
-    <head>
-        <title>CONDOR Home</title>
-    </head>
-    <body onload="loadMap()">
-        
-        <header>
-            <nav>
-                <ul class="top_menu">
-                    <li style="font-size: 32px; margin: 0em 0.1em"><a href="#">CondoR</a></li>
-                    <li class="dropdown">
-                        <a href="#">flights</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">International</a></li>
-                                <li><a href="#">Domestic</a></li>
-                            </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#">crew</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Pilots</a></li>
-                                <li><a href="#">Attendants</a></li>
-                            </ul>
-                    </li>
-                    <li>
-                        <a href="#">support</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">FAQs</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                            </ul>
-                    </li>
-                    <li><a href="https://main.d2axyxwwsu0549.amplifyapp.com/loggedout.html">Log out</a></li>
+    <script src="https://kit.fontawesome.com/7c8801c017.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONDOR Home3</title>
+</head>
+<body onload="loadMap()">
 
-                </ul>
-            </nav>
-        </header>
-        
+
+<div class="account-container">
+    <p><i class="fa-solid fa-user"></i>  Welcome, Ryan</p>
+    
+</div>
+
+<!--<div class="map-and-live">-->
+    <div class="map-container">
+        <div id="map"></div>
         <div>
-            <h1 style="text-align: center;">Welcome to Condor</h1>
+            <label class="animate-weather-box" ><input type="checkbox" id="animateWeatherCheckBox" class="animate-weather-box" onclick="refreshWeatherLayer(); setAnimateHelpTextVisibility();">Live Weather</label>
         </div>
-        
-        
-        <div id="map" style="width:50%; height:400px; border-radius: 10px; margin: auto;"></div>
-   
-        <div style="float: left; margin: auto; justify-content: center; align-items: center; display: flex;">
-            <label style="font-size:8pt; "><input type="checkbox" id="animateWeatherCheckBox" onclick="refreshWeatherLayer(); setAnimateHelpTextVisibility();" style="width:10px; height:10px; margin: auto">Animate</label>
-                <ul id="animateHelpText" style="display:none; font-size: 10px;">
-                    <li>Shows the last 2 hours in 5 minute intervals.</li>
-                    <li>It might take a few cycles to fully load the images.</li>
-                    <li>Uncheck this before moving or zooming the map.</li>
-                </ul>
+    </div>
+    
+    <div class="live-container">
+
+    </div>
+<!--</div>-->
+
+<div class="schedule-container">
+
+</div>
+
+<div class="container">
+    <div class="search-box">
+        <i class="fa-solid fa-plane"></i>
+        <input type="text" placeholder="Flight Number">
+        <button class="fa-solid fa-magnifying-glass"></button>
+    </div>
+
+    <div class="not-found">
+        <img src="images/404.png">
+        <p>Oops! Invalid flight number :/</p>
+    </div>
+
+    <div class="weather-box">
+        <img src="">
+        <p class="temperature"></p>
+        <p class="description"></p>
+    </div>
+
+    <div class="weather-details">
+        <div class="humidity">
+            <i class="fa-solid fa-water"></i>
+            <div class="text">
+                <span></span>
+                <p>Humidity</p>
+            </div>
         </div>
-
-        <div>
-            
-            <h1>Crew Generator</h1>
-  
-            <button onclick="generateCrew()" style="height:60px; width: 130px; border-radius: 10px; margin: 2em;">Generate Crew</button>
-            <button onclick="approveCrew()" style="height:60px; width: 130px; border-radius: 10px; margin: 2em;">Approve Crew</button>
-  
-            <h2>Tail Number</h2>
-            <table id="tailNumberTable"></table>
-
-            <h2>Generated Crew</h2>
-            <table id="generatedCrewTable"></table>
-
-            <h2>Approved Crew</h2>
-            <table id="approvedCrewTable"></table>
-
-            <h2>Flight Information</h2>
-            <table id="flightInfoTable"></table>
-              
+        <div class="wind">
+            <i class="fa-solid fa-wind"></i>
+            <div class="text">
+                <span></span>
+                <p>Wind Speed</p>
+            </div>
         </div>
+    </div>
 
 
-    </body>
+
+</div>
+
+
+
+</body>
 </html>
