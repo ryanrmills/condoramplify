@@ -11,71 +11,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CONDOR Home3</title>
 </head>
+
 <body onload="loadMap()">
 
+<div class="container">
 
-<div class="account-container">
-    <p><i class="fa-solid fa-user"></i>  Welcome, Ryan</p>
+    <div class="account-container">
+        <p><i class="fa-solid fa-user"></i>  Welcome, Ryan</p>
     
-</div>
+    </div>
 
-<!--<div class="map-and-live">-->
+    <!--<div class="map-and-live">-->
+    
     <div class="map-container">
         <div id="map"></div>
-        <div>
-            <label class="animate-weather-box" ><input type="checkbox" id="animateWeatherCheckBox" class="animate-weather-box" onclick="refreshWeatherLayer(); setAnimateHelpTextVisibility();">Live Weather</label>
-        </div>
+            <div>
+                <label class="animate-weather-box" ><input type="checkbox" id="animateWeatherCheckBox" class="animate-weather-box" onclick="refreshWeatherLayer(); setAnimateHelpTextVisibility();">Live Weather</label>
+            </div>
     </div>
     
     <div class="live-container">
 
     </div>
-<!--</div>-->
 
-<div class="schedule-container">
 
-</div>
+    <!--</div>-->
 
-<div class="container">
-    <div class="search-box">
-        <i class="fa-solid fa-plane"></i>
-        <input type="text" placeholder="Flight Number">
-        <button class="fa-solid fa-magnifying-glass"></button>
+    <div class="schedule-container">
+
     </div>
 
-    <div class="not-found">
-        <img src="images/404.png">
-        <p>Oops! Invalid flight number :/</p>
-    </div>
+    <div class="search-container">
+        <div class="search-box">
+            <i class="fa-solid fa-plane"></i>
+            <input type="text" placeholder="  Flight Number">
+            <button class="fa-solid fa-magnifying-glass"></button>
+        </div>
 
-    <div class="weather-box">
-        <img src="">
-        <p class="temperature"></p>
-        <p class="description"></p>
-    </div>
+        <div class="not-found">
+            <img src="images/404.png">
+            <p>Oops! Invalid flight number :/</p>
+        </div>
 
-    <div class="weather-details">
-        <div class="humidity">
-            <i class="fa-solid fa-water"></i>
-            <div class="text">
-                <span></span>
-                <p>Humidity</p>
+        <div class="weather-box">
+            <img src="">
+            <p class="temperature"></p>
+            <p class="description"></p>
+        </div>
+
+        <div class="weather-details">
+            <div class="humidity">
+                <i class="fa-solid fa-water"></i>
+                <div class="text">
+                    <span></span>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class="wind">
+                <i class="fa-solid fa-wind"></i>
+                <div class="text">
+                    <span></span>
+                    <p>Wind Speed</p>
+                </div>
             </div>
         </div>
-        <div class="wind">
-            <i class="fa-solid fa-wind"></i>
-            <div class="text">
-                <span></span>
-                <p>Wind Speed</p>
-            </div>
-        </div>
+
+
+
     </div>
-
-
-
 </div>
-
 
 
 </body>
+
 </html>

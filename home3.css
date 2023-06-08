@@ -1,25 +1,32 @@
-/* {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+*{
     margin: 0;
     padding: 0;
     border: 0;
     outline: none;
     box-sizing: border-box;
-}*/
+    font-family: 'Ubuntu';
+}
 
 body{
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: url(./images/background.svg);
+    padding: 10px;
+    height: 100vh;
+    background: url(./images/background3.svg);
     background-repeat: no-repeat;
     background-size: cover;
-    gap: 20px;
+}
+
+.container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
 }
 
 .account-container{
-    width: 100%;
     display: flex;
     align-items:center;
     justify-content: space-evenly;
@@ -28,13 +35,14 @@ body{
     background: white;
     border-radius: 20px;
     box-shadow: 0px 3px 3px black;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
+
 .account-container:hover{
-    transition: 0.5s;
-    width: 600px;
-    height:100px;
+    transition: 0.3s;
+    transform: translateY(-4px);
+    box-shadow: 0px 6px 3px black;
 }
 
 .account-container i{
@@ -58,13 +66,19 @@ for the map container and the live container, spacing them and what not.*/
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 650px;
+    width: 650ppx;
     height:400px;
     padding: 20px;
     background: white;
     border-radius: 20px;
     box-shadow: 0px 3px 3px black;
+    transition: 0.3s;
+}
 
+.map-container:hover{
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 3px black;
+    transition: 0.3s;
 }
 
 #map{
@@ -76,12 +90,12 @@ for the map container and the live container, spacing them and what not.*/
 #animateWeatherCheckBox {
    transform: scale(1.3);
    width: 20px;
+   cursor: pointer;
 }
 
 .animate-weather-box{
     font-size:18px;
     font-family: 'Roboto' sans-serif;
-    font-weight: 500;
 }
 
 .live-container{
@@ -99,16 +113,23 @@ for the map container and the live container, spacing them and what not.*/
 
 /*Style for the flight search information*/
 
-.container {
+.search-container {
     position: relative;
     width: 400px;
     height: 80px;
     background: white;
-    padding: 28px 32px;
+    padding: 20px 32px;
     overflow: hidden;
     border-radius: 18px;
     font-family: 'Roboto', sans-serif;
-    transition: 0.6s ease-out;
+    transition: 0.3s;
+    box-shadow: 0px 3px 3px black;
+}
+
+.search-container:hover{
+    transform: translateY(-6px);
+    box-shadow: 0px 6px 3px black;
+    transition: 0.3s;
 }
 
 .search-box {
@@ -126,6 +147,7 @@ for the map container and the live container, spacing them and what not.*/
     font-weight: 500;
     text-transform: uppercase;
     padding-left: 32px;
+    border-style: none;
 }
 
 .search-box input::placeholder {
@@ -144,6 +166,7 @@ for the map container and the live container, spacing them and what not.*/
     border-radius: 50%;
     font-size: 22px;
     transition: 0.4s ease;
+    border-style: none;
 }
 
 .search-box button:hover {

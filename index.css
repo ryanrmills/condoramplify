@@ -55,7 +55,6 @@ button{
     font-size: 15px;
     color: #06283D;
     background: white;
-    box-shadow: 0px 3px 5px black;
     transition: 0.3s;
 }
 
@@ -64,6 +63,6 @@ button:hover {
     background: rgb(230, 162, 74);
     transition: 0.4s;
     font-size: 17px;
-    height: 70px;
-    width: 130px;
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.5);
 }
