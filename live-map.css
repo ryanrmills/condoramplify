@@ -11,7 +11,7 @@
 
 body{
     padding: 10px;
-    background-color:#112c38;
+    background: url(./images/background.svg);
     background-repeat: no-repeat;
     background-size: cover;
 }

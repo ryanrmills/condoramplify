@@ -22,69 +22,89 @@
     </div>
 
     <div class="body-container">
+
         <div class="schedule-container">
-            <p><i class="fa-solid fa-calendar-days"></i> Crew Schedule</p>
-            <h1>Flight Delay Probability Search</h1>
-  <input type="text" id="flightNumberInput" placeholder="Enter flight number">
-  <button id="searchButton">Search</button>
-  <div id="searchResult"></div>
-  <table id="flightTable"></table>
-
-  <script>
-    // Function to parse the CSV data and create a table of flight information
-    function createFlightTable(csvData) {
-      const rows = csvData.split("\n");
-
-      const table = document.getElementById("flightTable");
-      table.innerHTML = ""; // Clear existing table
-
-      for (let i = 0; i < rows.length; i++) {
-        const cells = rows[i].split(",");
-        const flightNumber = cells[2].trim();
-        const delayProbability = cells[10].trim();
-
-        // Create table row and cells
-        const row = document.createElement("tr");
-        const flightNumberCell = document.createElement("td");
-        const delayProbabilityCell = document.createElement("td");
-
-        // Set cell values
-        flightNumberCell.textContent = flightNumber;
-        delayProbabilityCell.textContent = delayProbability;
-
-        // Append cells to the row
-        row.appendChild(flightNumberCell);
-        row.appendChild(delayProbabilityCell);
-
-        // Append row to the table
-        table.appendChild(row);
-      }
-    }
-
-    // Function to handle search button click event
-    function handleSearch() {
-      const flightNumberInput = document.getElementById("flightNumberInput");
-      const searchResult = document.getElementById("searchResult");
-
-      const flightNumber = flightNumberInput.value.trim();
-
-      // Fetch the CSV file from S3
-      fetch("s3://condor-prediction/predicted_data_20230608192025.csv")
-        .then(response => response.text())
-        .then(data => {
-          createFlightTable(data);
-          searchResult.textContent = ""; // Clear search result
-        })
-        .catch(error => {
-          console.error("Error fetching CSV data:", error);
-        });
-    }
-
-    const searchButton = document.getElementById("searchButton");
-    searchButton.addEventListener("click", handleSearch);
-  </script>
-
+          <p>Flight Delay Probability Search</p>
+          <input type="text" id="flightNumberInput" placeholder="Enter flight number">
+          <button id="searchButton">Search</button>
+          <div id="searchResult"></div>
+        
+          <script>
+            const csvData = `FL_DATE,OP_UNIQUE_CARRIER,OP_CARRIER_FL_NUM,ORIGIN,DEST,CRS_DEP_TIME,DEP_TIME,DEP_DELAY,CRS_ARR_TIME,ARR_TIME,DELAY_PROBABILITY
+        06-08-2023,AA,1643,CLT,ILM,07:28:00,07:42:00,14,08:29:00,08:17:00,11.41%
+        06-08-2023,AA,1680,MIA,LGA,16:59:00,16:59:00,0,20:00:00,20:00:00,1.10%
+        06-08-2023,AA,2646,LAX,PHL,10:51:00,11:11:00,20,19:12:00,18:54:00,17.42%
+        06-08-2023,AA,4506,LGA,CAE,13:20:00,14:19:00,59,15:24:00,16:28:00,102.07%
+        06-08-2023,AA,5026,DCA,CAE,08:46:00,09:32:00,46,10:37:00,10:44:00,76.30%
+        06-08-2023,AA,5063,CLT,MHT,16:23:00,16:23:00,0,18:39:00,18:39:00,4.15%
+        06-08-2023,AA,5198,CLT,CAE,20:45:00,20:45:00,0,21:44:00,21:44:00,-1.24%
+        06-08-2023,AA,5260,CLT,TYS,14:38:00,14:55:00,17,15:46:00,15:26:00,25.84%
+        06-08-2023,AA,5275,CLT,ATL,16:22:00,16:22:00,0,17:43:00,17:43:00,2.01%
+        06-08-2023,AA,5596,ILM,DCA,19:53:00,19:53:00,0,21:17:00,21:17:00,6.58%
+        06-08-2023,AA,5599,DCA,ROC,15:03:00,15:03:00,0,16:38:00,15:51:00,3.45%
+        06-08-2023,AA,5603,CAE,DCA,06:06:00,06:10:00,4,07:40:00,07:12:00,-0.10%
+        06-08-2023,AA,5664,DCA,CAE,22:05:00,22:05:00,0,23:41:00,23:41:00,-1.04%
+        06-08-2023,AA,5928,BDL,PHL,06:18:00,06:32:00,14,07:35:00,07:25:00,22.04%
+        06-08-2023,AA,5961,CLT,FWA,20:46:00,20:46:00,0,22:36:00,22:36:00,5.93%
+        06-08-2023,AA,5989,PHL,RIC,09:55:00,10:23:00,28,11:06:00,11:12:00,49.18%
+        06-08-2023,AA,5990,CLT,CAE,13:13:00,14:04:00,51,14:12:00,14:29:00,85.30%
+        06-08-2023,AA,6027,PHL,BUF,10:54:00,11:01:00,7,12:24:00,11:53:00,9.82%
+        06-08-2023,AA,6080,FWA,CLT,06:25:00,06:29:00,4,08:09:00,07:43:00,1.96%
+        06-09-2023,AA,6152,COU,ORD,06:21:00,06:21:00,0,07:45:00,07:45:00,-1.21%
+        06-09-2023,AA,6153,MLI,ORD,06:10:00,06:10:00,0,07:16:00,07:16:00,-2.47%
+        06-08-2023,AA,6198,ORD,LAN,13:27:00,13:27:00,0,15:23:00,15:23:00,2.75%`;
+        
+            function searchFlightDelayProbability(flightNumber) {
+              const rows = csvData.split("\n");
+              for (let i = 1; i < rows.length; i++) {
+                const row = rows[i].split(",");
+                const flightNum = row[2].trim();
+                if (flightNum === flightNumber) {
+                  return row[10].trim();
+                }
+              }
+              return "Flight not found";
+            }
+        
+            function handleSearch() {
+              const flightNumberInput = document.getElementById("flightNumberInput");
+              const searchResult = document.getElementById("searchResult");
+              const flightNumber = flightNumberInput.value.trim();
+        
+              const delayProbability = searchFlightDelayProbability(flightNumber);
+              if (delayProbability !== "Flight not found") {
+                searchResult.textContent = ` Flight Delay Probability of ${flightNumber} : ${delayProbability}`;
+              } else {
+                searchResult.textContent = "Flight not found";
+              }
+            }
+        
+            const searchButton = document.getElementById("searchButton");
+            searchButton.addEventListener("click", handleSearch);
+          </script>
         </div>
+        
+        <div class="crew-generator">
+            
+          <h4>Generate Crew</h4>
+
+          <button onclick="generateCrew()" style="height:60px; width: 130px; border-radius: 10px; margin: 2em;">Generate Crew</button>
+          <button onclick="approveCrew()" style="height:60px; width: 130px; border-radius: 10px; margin: 2em;">Approve Crew</button>
+
+          <p>Tail Number</p>
+          <table id="tailNumberTable"></table>
+
+          <p>Generated Crew</p>
+          <table id="generatedCrewTable"></table>
+
+          <p>Approved Crew</p>
+          <table id="approvedCrewTable"></table>
+
+          <p>Flight Information</p>
+          <table id="flightInfoTable"></table>
+            
+      </div>
+        
     </div>
 
 </body>
