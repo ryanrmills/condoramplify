@@ -28,23 +28,37 @@
   <input type="text" id="flightNumberInput" placeholder="Enter flight number">
   <button id="searchButton">Search</button>
   <div id="searchResult"></div>
+  <table id="flightTable"></table>
 
   <script>
-    // Function to parse the CSV data and search for flight delay probability
-    function searchFlightDelayProbability(csvData, flightNumber) {
+    // Function to parse the CSV data and create a table of flight information
+    function createFlightTable(csvData) {
       const rows = csvData.split("\n");
 
-      for (let i = 1; i < rows.length; i++) { // Start from index 1 to skip header row
+      const table = document.getElementById("flightTable");
+      table.innerHTML = ""; // Clear existing table
+
+      for (let i = 0; i < rows.length; i++) {
         const cells = rows[i].split(",");
-        const currentFlightNumber = cells[2].trim();
+        const flightNumber = cells[2].trim();
         const delayProbability = cells[10].trim();
 
-        if (currentFlightNumber === flightNumber) {
-          return delayProbability;
-        }
-      }
+        // Create table row and cells
+        const row = document.createElement("tr");
+        const flightNumberCell = document.createElement("td");
+        const delayProbabilityCell = document.createElement("td");
 
-      return "Flight not found";
+        // Set cell values
+        flightNumberCell.textContent = flightNumber;
+        delayProbabilityCell.textContent = delayProbability;
+
+        // Append cells to the row
+        row.appendChild(flightNumberCell);
+        row.appendChild(delayProbabilityCell);
+
+        // Append row to the table
+        table.appendChild(row);
+      }
     }
 
     // Function to handle search button click event
@@ -58,8 +72,8 @@
       fetch("s3://condor-prediction/predicted_data_20230608192025.csv")
         .then(response => response.text())
         .then(data => {
-          const delayProbability = searchFlightDelayProbability(data, flightNumber);
-          searchResult.textContent = `Flight ${flightNumber}: ${delayProbability}`;
+          createFlightTable(data);
+          searchResult.textContent = ""; // Clear search result
         })
         .catch(error => {
           console.error("Error fetching CSV data:", error);
@@ -69,6 +83,7 @@
     const searchButton = document.getElementById("searchButton");
     searchButton.addEventListener("click", handleSearch);
   </script>
+
         </div>
     </div>
 
