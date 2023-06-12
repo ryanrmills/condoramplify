@@ -88,13 +88,30 @@
             
           <h4>Generate Crew</h4>
 
-          <button onclick="generateCrew()" style="height:60px; width: 130px; border-radius: 10px; margin: 2em;">Generate Crew</button>
+          <button onclick="generateCrewWithDelay()" style="height:60px; width: 130px; border-radius: 10px; margin: 2em;">Generate Crew</button>
           <button onclick="approveCrew()" style="height:60px; width: 130px; border-radius: 10px; margin: 2em;">Approve Crew</button>
 
           <p>Tail Number</p>
+
+          <div id="loadingAnimation" style="display: none;">
+            <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <!-- Add your loading animation here -->
+            <!-- For example, you can use a spinner or a GIF animation -->
+            <p>Loading...</p>
+            </div>
+          
           <table id="tailNumberTable"></table>
 
           <p>Generated Crew</p>
+
+          <div id="loadingAnimation" style="display: none;">
+              <div class="spinner"></div>
+            
+            <!-- Add your loading animation here -->
+            <!-- For example, you can use a spinner or a GIF animation -->
+            <p>Loading...</p>
+            </div>
+          
           <table id="generatedCrewTable"></table>
 
           <p>Approved Crew</p>

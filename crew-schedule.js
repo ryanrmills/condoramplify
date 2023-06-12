@@ -48,6 +48,41 @@ var personnelList = [
   { name: "Chloe Foster", title: "Crew Member", experience: 3 },
 ];
 
+///////////////////////////////////////////////////////
+
+function generateCrewWithDelay() {
+    // Show loading animation
+    showLoadingAnimation();
+  
+    // Generate a crew after a random delay
+    setTimeout(function () {
+      generateCrew();
+      // Hide loading animation
+      hideLoadingAnimation();
+    }, getRandomDelay());
+  }
+  
+  function getRandomDelay() {
+    // Generate a random delay between 1 and 5 seconds
+    return Math.floor(Math.random() * 4000) + 1000;
+  }
+  
+  function showLoadingAnimation() {
+    // Display the loading animation
+    var loadingAnimation = document.getElementById("loadingAnimation");
+    loadingAnimation.style.display = "block";
+  }
+  
+  function hideLoadingAnimation() {
+    // Hide the loading animation
+    var loadingAnimation = document.getElementById("loadingAnimation");
+    loadingAnimation.style.display = "none";
+  }
+
+  /////////////////////////
+
+
+
 // Variables to store the generated crew and approved crew
 function generateCrew() {
   // Generate a crew for a single plane
