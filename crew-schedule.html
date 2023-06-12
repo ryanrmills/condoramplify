@@ -27,6 +27,10 @@
           <p>Flight Delay Probability Search</p>
           <input type="text" id="flightNumberInput" placeholder="Enter flight number">
           <button id="searchButton">Search</button>
+          <div id="lodingAnimation" style="display: none;">
+            <div class="sbl-circ-ripple"></div>
+            <!-- Add your spinner animation code here -->
+          </div>
           <div id="searchResult"></div>
         
           <script>
@@ -54,33 +58,50 @@
         06-09-2023,AA,6153,MLI,ORD,06:10:00,06:10:00,0,07:16:00,07:16:00,-2.47%
         06-08-2023,AA,6198,ORD,LAN,13:27:00,13:27:00,0,15:23:00,15:23:00,2.75%`;
         
-            function searchFlightDelayProbability(flightNumber) {
-              const rows = csvData.split("\n");
-              for (let i = 1; i < rows.length; i++) {
-                const row = rows[i].split(",");
-                const flightNum = row[2].trim();
-                if (flightNum === flightNumber) {
-                  return row[10].trim();
-                }
-              }
-              return "Flight not found";
-            }
-        
-            function handleSearch() {
-              const flightNumberInput = document.getElementById("flightNumberInput");
-              const searchResult = document.getElementById("searchResult");
-              const flightNumber = flightNumberInput.value.trim();
-        
-              const delayProbability = searchFlightDelayProbability(flightNumber);
-              if (delayProbability !== "Flight not found") {
-                searchResult.textContent = ` Flight Delay Probability of ${flightNumber} : ${delayProbability}`;
-              } else {
-                searchResult.textContent = "Flight not found";
-              }
-            }
-        
-            const searchButton = document.getElementById("searchButton");
-            searchButton.addEventListener("click", handleSearch);
+        function searchFlightDelayProbability(flightNumber) {
+      const rows = csvData.split("\n");
+      for (let i = 1; i < rows.length; i++) {
+        const row = rows[i].split(",");
+        const flightNum = row[2].trim();
+        if (flightNum === flightNumber) {
+          return row[10].trim();
+        }
+      }
+      return "Flight not found";
+    }
+
+    function showLodingAnimation() {
+      const lodingAnimation = document.getElementById("lodingAnimation");
+      lodingAnimation.style.display = "block";
+    }
+
+    function hideLodingAnimation() {
+      const lodingAnimation = document.getElementById("lodingAnimation");
+      lodingAnimation.style.display = "none";
+    }
+
+    function handleSearch() {
+      const flightNumberInput = document.getElementById("flightNumberInput");
+      const searchResult = document.getElementById("searchResult");
+      const flightNumber = flightNumberInput.value.trim();
+
+      showLodingAnimation(); // Show the loading animation
+
+      // Simulate an asynchronous delay to mimic fetching data from an API
+      setTimeout(() => {
+        const delayProbability = searchFlightDelayProbability(flightNumber);
+        hideLodingAnimation(); // Hide the loading animation
+
+        if (delayProbability !== "Flight not found") {
+          searchResult.textContent = `Flight Delay Probability of ${flightNumber}: ${delayProbability}`;
+        } else {
+          searchResult.textContent = "Flight not found";
+        }
+      }, 2000); // Delay of 2000 milliseconds (2 seconds)
+    }
+
+    const searchButton = document.getElementById("searchButton");
+    searchButton.addEventListener("click", handleSearch);
           </script>
         </div>
         
