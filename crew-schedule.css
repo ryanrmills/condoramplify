@@ -46,3 +46,27 @@ body{
 
 }
 
+.body-container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.schedule-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 1000px;
+    height:500px;
+    background: white;
+    border-radius: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.schedule-container p{
+    margin-top: 30px;
+}
+
+

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="live-map.css">
+    <script src="live-map.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8GZFzfpxUMK_aqGNAmCZexZXMYB17BIc"></script>
+    <script src="https://kit.fontawesome.com/7c8801c017.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONDOR Home3</title>
+</head>
+
+<body onload="loadMap()">
+
+    <div class="topnav">
+        <p><a href="./home3.html"><i class="fa-solid fa-user"></i> Account</a></p>
+        <p><a href="./live-map.html"><i class="fa-solid fa-map"></i> Live Map</a></p>
+        <p><a href="./crew-schedule.html"><i class="fa-solid fa-calendar-days"></i> Crew Schedule</a></p>
+    </div>
+
+    <div class="body-container">
+    <div class="map-container">
+        <p><i class="fa-solid fa-map"></i> Live Map</p>
+        <div id="map"></div>
+            <div>
+                <label class="animate-weather-box" ><input type="checkbox" id="animateWeatherCheckBox" class="animate-weather-box" onclick="refreshWeatherLayer(); setAnimateHelpTextVisibility();">Live Weather</label>
+            </div>
+    </div>
+    </div>
+
+</body>
+</html>
